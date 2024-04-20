@@ -2,7 +2,6 @@ trigger:
 - main
 
 pool: my-pool
-  agent.name: WIN10-Docker
 
 steps:
 
