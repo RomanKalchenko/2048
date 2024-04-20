@@ -13,3 +13,11 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '2048-game/Dockerfile'
     buildContext: '2048-game'
+
+- task: KubernetesManifest@1
+  inputs:
+    action: 'deploy'
+    connectionType: 'kubernetesServiceConnection'
+    kubernetesServiceConnection: 'cubik'
+    namespace: 'default'
+    manifests: '/01_kubernetes_aks /app-deploy.yaml'
