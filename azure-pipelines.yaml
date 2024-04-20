@@ -9,7 +9,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'my-registry'
-    repository: 'library/repo'
+    repository: 'library/repo/2048'
     command: 'buildAndPush'
     Dockerfile: '2048-game/Dockerfile'
     buildContext: '2048-game'
