@@ -20,4 +20,4 @@ steps:
     connectionType: 'kubernetesServiceConnection'
     kubernetesServiceConnection: 'cubik'
     namespace: 'default'
-    manifests: '01_kubernetes_aks /app-deploy.yaml'
+    manifests: '01_kubernetes_aks/app-deploy.yaml'
