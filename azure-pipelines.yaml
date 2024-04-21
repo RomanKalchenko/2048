@@ -25,4 +25,5 @@ steps:
     kubernetesServiceConnection: 'cubik'
     namespace: 'default'
     manifests: '01_kubernetes_aks/app-deploy.yaml'
+    containers: 'azuredevops.test.dev/library/2048/web-game:$(tag)'
     
