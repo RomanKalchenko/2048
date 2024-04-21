@@ -27,7 +27,7 @@ stages:
   dependsOn: Build
   jobs:
   - deployment: Deploy
-    environment: 
+    environment: cubik
     displayName: Deploy to K8s
     pool: my-pool
     strategy:
