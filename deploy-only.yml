@@ -1,0 +1,27 @@
+trigger:
+- main
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages: 
+- stage: Deploy
+  displayName: Deploy to K8s
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    environment: cubik
+    displayName: Deploy to K8s
+    pool: my-pool
+    strategy:
+      runOnce:
+        deploy:
+         pool: my-pool
+         steps:
+         - task: KubernetesManifest@1
+           inputs:
+             action: deploy
+             connectionType: kubernetesServiceConnection
+             kubernetesServiceConnection: cubik
+             namespace: default
+             manifests: 01_kubernetes_aks/app-deploy.yaml
