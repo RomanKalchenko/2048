@@ -8,7 +8,7 @@ stages:
 - stage: BuildandPush
   displayName: Build and Push Image
   jobs:
-    - job: Build-and-Push
+    - job: BuildandPush
       displayName: Build and Push
       pool: my-pool
       steps:
