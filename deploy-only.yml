@@ -21,6 +21,6 @@ stages:
            inputs:
              action: deploy
              connectionType: kubernetesServiceConnection
-             kubernetesServiceConnection: cubik
-             namespace: default
-             manifests: 01_kubernetes_aks/app-deploy.yaml
+             kubernetesServiceConnection: 'cubik'
+             namespace: 'default'
+             manifests: '01_kubernetes_aks/app-deploy.yaml'
