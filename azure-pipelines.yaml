@@ -1,33 +1,41 @@
 trigger:
 - main
 
-pool: my-pool
-
 variables:
   tag: '$(Build.BuildId)'
 
-steps:
+stages: 
+- stage: Build-and-Push
+  displayName: Build and Push Image
+  jobs:
+    - job: Build-and-Push
+      displayName: Build and Push
+      pool: my-pool
+      steps:
+      - task: Docker@2
+        displayName: Build and Image
+        inputs:
+          containerRegistry: 'my-registry'
+          repository: 'library/2048'
+          command: 'buildAndPush'
+          Dockerfile: '2048-game/Dockerfile'
+          tags: |
+            $(tag)
+            latest
+- stage: Deploy
+  displayName: Deploy to K8s
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy to K8s
+    pool: my-pool
+    steps: 
+    - task: KubernetesManifest@1
+      inputs:
+      action: 'deploy'
+      connectionType: 'kubernetesServiceConnection'
+      kubernetesServiceConnection: 'cubik'
+      namespace: 'default'
+      manifests: '01_kubernetes_aks/app-deploy.yaml'
 
-
-- task: Docker@2
-  inputs:
-    containerRegistry: 'my-registry'
-    repository: 'library/2048'
-    command: 'buildAndPush'
-    Dockerfile: '2048-game/Dockerfile'
-    tags: |
-      $(tag)
-      latest
-
-- task: KubernetesManifest@1
-  inputs:
-    secretType: dockerRegistry
-    secretName: harbor-registry
-    dockerRegistryEndpoint: my-registry
-    action: 'deploy'
-    connectionType: 'kubernetesServiceConnection'
-    kubernetesServiceConnection: 'cubik'
-    namespace: 'default'
-    manifests: '01_kubernetes_aks/app-deploy.yaml'
-#    containers: 'azuredevops.test.dev/library/2048/web-game:$(tag)'
     
