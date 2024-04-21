@@ -7,7 +7,6 @@ variables:
 stages: 
 - stage: Deploy
   displayName: Deploy to K8s
-  dependsOn: Build
   jobs:
   - deployment: Deploy
     environment: cubik
