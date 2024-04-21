@@ -3,6 +3,9 @@ trigger:
 
 pool: my-pool
 
+variables:
+  tag: '$(Build.BuildId)'
+
 steps:
 
 
@@ -12,7 +15,8 @@ steps:
     repository: 'library/2048'
     command: 'buildAndPush'
     Dockerfile: '2048-game/Dockerfile'
-    buildContext: '2048-game'
+    tags: |
+      $(tag)
 
 - task: KubernetesManifest@1
   inputs:
@@ -21,3 +25,4 @@ steps:
     kubernetesServiceConnection: 'cubik'
     namespace: 'default'
     manifests: '01_kubernetes_aks/app-deploy.yaml'
+    
