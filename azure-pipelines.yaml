@@ -23,7 +23,7 @@ steps:
   inputs:
     secretType: dockerRegistry
     secretName: harbor-registry
-    dockerRegistryEndpoint: registry
+    dockerRegistryEndpoint: my-registry
     action: 'deploy'
     connectionType: 'kubernetesServiceConnection'
     kubernetesServiceConnection: 'cubik'
