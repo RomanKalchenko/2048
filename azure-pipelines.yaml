@@ -21,6 +21,8 @@ steps:
 
 - task: KubernetesManifest@1
   inputs:
+    secretType: dockerRegistry
+    secretName: azuredevops.test.dev
     action: 'deploy'
     connectionType: 'kubernetesServiceConnection'
     kubernetesServiceConnection: 'cubik'
