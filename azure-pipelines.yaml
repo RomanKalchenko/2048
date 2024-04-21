@@ -23,7 +23,7 @@ steps:
   inputs:
     secretType: dockerRegistry
     secretName: harbor-registry
-    dockerRegistryEndpoint: azuredevops.test.dev
+    dockerRegistryEndpoint: registry
     action: 'deploy'
     connectionType: 'kubernetesServiceConnection'
     kubernetesServiceConnection: 'cubik'
