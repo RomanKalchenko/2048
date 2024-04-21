@@ -21,7 +21,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: web-game
-        image: azuredevops.test.dev/library/2048:latest
+        image: registry.test.dev/library/2048:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
